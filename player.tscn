@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://rdu0e287rd8x"]
+
+[ext_resource type="Script" uid="uid://dypddcbnpyk6j" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="PackedScene" uid="uid://dl5x8qkjlx48g" path="res://bullet.tscn" id="2_i3pqv"]
+[ext_resource type="Texture2D" uid="uid://bi5wwlfwrl0un" path="res://rawr/ship-1.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://qv6obvj3h51l" path="res://rawr/bullet_1.png" id="4_hqtel"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
+radius = 13.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("gun", "muzzle")]
+script = ExtResource("1_4flbx")
+gun = NodePath("Gun")
+muzzle = NodePath("Gun/Muzzle")
+Bullet = ExtResource("2_i3pqv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 2
+texture = ExtResource("2_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_onrkg")
+
+[node name="Gun" type="Marker2D" parent="."]
+
+[node name="Muzzle" type="Marker2D" parent="Gun"]
+position = Vector2(20, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Gun/Muzzle"]
+visible = false
+texture = ExtResource("4_hqtel")
